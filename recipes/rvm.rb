@@ -1,6 +1,10 @@
 include_recipe "pivotal_workstation::java"
 include_recipe "pivotal_workstation::git"
 
+if node["platform"] == "mac_os_x"
+  include_recipe "pivotal_workstation::apple_gcc"
+end
+
 rvm_git_revision_hash  = version_string_for("rvm")
 
 ::RVM_HOME = "#{WS_HOME}/.rvm"
